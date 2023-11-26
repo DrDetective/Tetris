@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Sprite\Background.png" />
+    <None Remove="Sprite\Block-Empty.png" />
+    <None Remove="Sprite\Block-I.png" />
+    <None Remove="Sprite\Block-J.png" />
+    <None Remove="Sprite\Block-L.png" />
+    <None Remove="Sprite\Block-O.png" />
+    <None Remove="Sprite\Block-S.png" />
+    <None Remove="Sprite\Block-T.png" />
+    <None Remove="Sprite\Block-Z.png" />
+    <None Remove="Sprite\Icon.ico" />
+    <None Remove="Sprite\TileBlue.png" />
+    <None Remove="Sprite\TileCyan.png" />
+    <None Remove="Sprite\TileEmpty.png" />
+    <None Remove="Sprite\TileGreen.png" />
+    <None Remove="Sprite\TileOrange.png" />
+    <None Remove="Sprite\TilePurple.png" />
+    <None Remove="Sprite\TileRed.png" />
+    <None Remove="Sprite\TileYellow.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Sprite\Background.png" />
+    <Content Include="Sprite\Block-Empty.png" />
+    <Content Include="Sprite\Block-I.png" />
+    <Content Include="Sprite\Block-J.png" />
+    <Content Include="Sprite\Block-L.png" />
+    <Content Include="Sprite\Block-O.png" />
+    <Content Include="Sprite\Block-S.png" />
+    <Content Include="Sprite\Block-T.png" />
+    <Content Include="Sprite\Block-Z.png" />
+    <Content Include="Sprite\Icon.ico" />
+    <Content Include="Sprite\TileBlue.png" />
+    <Content Include="Sprite\TileCyan.png" />
+    <Content Include="Sprite\TileEmpty.png" />
+    <Content Include="Sprite\TileGreen.png" />
+    <Content Include="Sprite\TileOrange.png" />
+    <Content Include="Sprite\TilePurple.png" />
+    <Content Include="Sprite\TileRed.png" />
+    <Content Include="Sprite\TileYellow.png" />
+  </ItemGroup>
+
+</Project>
