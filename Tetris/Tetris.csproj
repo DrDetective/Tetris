@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net7.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Sprite\Icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,6 +32,7 @@
     <Content Include="Sprite\Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sprite\Icon.ico" />
     <Resource Include="Sprite\Block-Empty.png" />
     <Resource Include="Sprite\Block-I.png" />
     <Resource Include="Sprite\Block-J.png" />

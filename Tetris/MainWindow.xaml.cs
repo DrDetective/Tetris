@@ -44,6 +44,9 @@ namespace Tetris
         };
         private readonly Image[,] ImgControls;
         private GState gameState = new GState();
+        private readonly int MxDelay = 1000;
+        private readonly int MnDelay = 75;
+        private readonly int DelayDecres = 25;
         public MainWindow()
         {
             InitializeComponent();
@@ -101,11 +104,20 @@ namespace Tetris
         {
             if (Hold == null) { HoldImg.Source = blockImg[0]; }
             else { HoldImg.Source = blockImg[Hold.id]; }
-
+        }
+        private void DrawGhostBlock(Block block)
+        {
+            int dropDis = gameState.BlockDropDis();
+            foreach (Pos p in block.TilePos())
+            {
+                ImgControls[p.Row + dropDis, p.Column].Opacity = 0.25;
+                ImgControls[p.Row + dropDis, p.Column].Source = tileImg[block.id];
+            }
         }
         private void Draw(GState gameState)
         {
             DrawGrid(gameState.Grid);
+            DrawGhostBlock(gameState.CurrentBlock);
             DrawBlock(gameState.CurrentBlock);
             DrawNBlock(gameState.BloQueue);
             DrawHBlock(gameState.Hold);
@@ -116,7 +128,8 @@ namespace Tetris
             Draw(gameState);
             while (!gameState.GO)
             {
-                await Task.Delay(500);
+                int delay = Math.Max(MnDelay, MxDelay - (gameState.Score * DelayDecres));
+                await Task.Delay(delay);
                 gameState.MBDown();
                 Draw(gameState);
             }
@@ -150,6 +163,10 @@ namespace Tetris
 
                 case Key.C:
                     gameState.HoldBloc();
+                    break;
+
+                case Key.Space:
+                    gameState.DropBlock();
                     break;
 
                 default:
