@@ -9,14 +9,19 @@ namespace Tetris
 {
     public class GState
     {
-        private Block currBlock;
+        private Block currentBlock;
         public Block CurrentBlock
         {
-            get => currBlock;
+            get => currentBlock;
             private set
             {
-                currBlock = value;
-                currBlock.Res();
+                currentBlock = value;
+                currentBlock.Res();
+                for (int i = 0; i < 2; i++)
+                { currentBlock.Move(1,0);
+                    if (!FitBlock())
+                    { currentBlock.Move(-1,0); }
+                }
             }
         }
         public Grid GGrid { get; }
@@ -27,12 +32,12 @@ namespace Tetris
         {
             GGrid = new Grid(22, 10);
             BloQueue = new Queue();
-            currBlock = BloQueue.GAU();
+            CurrentBlock = BloQueue.GAU();
         }
 
         private bool FitBlock()
         {
-            foreach (Pos p in currBlock.TilePos())
+            foreach (Pos p in CurrentBlock.TilePos())
             {
                 if (!GGrid.isEm(p.Row, p.Column))
                 {

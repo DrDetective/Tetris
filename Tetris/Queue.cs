@@ -21,13 +21,13 @@ namespace Tetris
         };
         private readonly Random rng = new Random();
         public Block NBlock { get; private set; }
-        private Block RNGBlock()
-        {
-            return blocks[rng.Next(blocks.Length)];
-        }
         public Queue()
         {
             NBlock = RNGBlock();
+        }
+        private Block RNGBlock()
+        {
+            return blocks[rng.Next(blocks.Length)];
         }
         public Block GAU()
         {

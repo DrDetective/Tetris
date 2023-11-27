@@ -38,12 +38,12 @@ namespace Tetris
             new BitmapImage(new Uri("Sprite/Block-T.png", UriKind.Relative)),
             new BitmapImage(new Uri("Sprite/Block-Z.png", UriKind.Relative))
         };
-        private readonly Image[,] ImgControl;
+        private readonly Image[,] ImgControls;
         private GState gameState = new GState();
         public MainWindow()
         {
             InitializeComponent();
-            ImgControl = SetupGCanvas(gameState.GGrid);
+            ImgControls = SetupGCanvas(gameState.GGrid);
         }
         private Image[,] SetupGCanvas(Grid grid)
         {
@@ -58,10 +58,9 @@ namespace Tetris
                         Width = cellSize,
                         Height = cellSize
                     };
-                    
-                    GCanvas.Children.Add(ImgControl);
-                    Canvas.SetTop(ImgControl, (r - 2) * cellSize);
+                    Canvas.SetTop(ImgControl, (r - 2) * cellSize + 10);
                     Canvas.SetLeft(ImgControl, c * cellSize);
+                    GCanvas.Children.Add(ImgControl);
                     ImgControls[r, c] = ImgControl;
                 }
             }
@@ -74,8 +73,8 @@ namespace Tetris
                 for (int c = 0; c < grid.column; c++)
                 {
                     int id = grid[r, c];
-                    ImgControl[r, c].Opacity = 1;
-                    ImgControl[r, c].Source = tileImg[id];
+                    ImgControls[r, c].Opacity = 1;
+                    ImgControls[r, c].Source = tileImg[id];
                 }
             }
         
@@ -84,8 +83,8 @@ namespace Tetris
         {
             foreach (Pos p in block.TilePos())
             {
-                ImgControl[p.Row, p.Column].Opacity = 1;
-                ImgControl[p.Row, p.Column].Source = tileImg[block.id];
+                ImgControls[p.Row, p.Column].Opacity = 1;
+                ImgControls[p.Row, p.Column].Source = tileImg[block.id];
             }
         }
         private void Draw(GState gameState)
@@ -127,9 +126,10 @@ namespace Tetris
         {
             Draw(gameState);
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            gameState = new GState();
+            GOMenu.Visibility = Visibility.Hidden;
         }
     }
 }
