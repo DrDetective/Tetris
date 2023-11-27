@@ -3,8 +3,6 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net7.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
@@ -33,23 +31,23 @@
     <Content Include="Sprite\Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sprite\Block-Empty.png" />
-    <Content Include="Sprite\Block-I.png" />
-    <Content Include="Sprite\Block-J.png" />
-    <Content Include="Sprite\Block-L.png" />
-    <Content Include="Sprite\Block-O.png" />
-    <Content Include="Sprite\Block-S.png" />
-    <Content Include="Sprite\Block-T.png" />
-    <Content Include="Sprite\Block-Z.png" />
-    <Content Include="Sprite\Icon.ico" />
-    <Content Include="Sprite\TileBlue.png" />
-    <Content Include="Sprite\TileCyan.png" />
-    <Content Include="Sprite\TileEmpty.png" />
-    <Content Include="Sprite\TileGreen.png" />
-    <Content Include="Sprite\TileOrange.png" />
-    <Content Include="Sprite\TilePurple.png" />
-    <Content Include="Sprite\TileRed.png" />
-    <Content Include="Sprite\TileYellow.png" />
+    <Resource Include="Sprite\Block-Empty.png" />
+    <Resource Include="Sprite\Block-I.png" />
+    <Resource Include="Sprite\Block-J.png" />
+    <Resource Include="Sprite\Block-L.png" />
+    <Resource Include="Sprite\Block-O.png" />
+    <Resource Include="Sprite\Block-S.png" />
+    <Resource Include="Sprite\Block-T.png" />
+    <Resource Include="Sprite\Block-Z.png" />
+    <Resource Include="Sprite\Icon.ico" />
+    <Resource Include="Sprite\TileBlue.png" />
+    <Resource Include="Sprite\TileCyan.png" />
+    <Resource Include="Sprite\TileEmpty.png" />
+    <Resource Include="Sprite\TileGreen.png" />
+    <Resource Include="Sprite\TileOrange.png" />
+    <Resource Include="Sprite\TilePurple.png" />
+    <Resource Include="Sprite\TileRed.png" />
+    <Resource Include="Sprite\TileYellow.png" />
   </ItemGroup>
 
 </Project>

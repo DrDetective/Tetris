@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -43,25 +47,26 @@ namespace Tetris
         public MainWindow()
         {
             InitializeComponent();
-            ImgControls = SetupGCanvas(gameState.GGrid);
+            ImgControls = SetupGCanvas(gameState.Grid);
         }
         private Image[,] SetupGCanvas(Grid grid)
         {
             Image[,] ImgControls = new Image[grid.row, grid.column];
             int cellSize = 25;
+
             for (int r = 0; r < grid.row; r++)
             {
                 for (int c = 0; c < grid.column; c++)
                 {
-                    Image ImgControl = new Image
+                    Image imgControl = new Image
                     {
                         Width = cellSize,
                         Height = cellSize
                     };
-                    Canvas.SetTop(ImgControl, (r - 2) * cellSize + 10);
-                    Canvas.SetLeft(ImgControl, c * cellSize);
-                    GCanvas.Children.Add(ImgControl);
-                    ImgControls[r, c] = ImgControl;
+                    Canvas.SetTop(imgControl, (r - 2) * cellSize + 10);
+                    Canvas.SetLeft(imgControl, c * cellSize);
+                    GCanvas.Children.Add(imgControl);
+                    ImgControls[r, c] = imgControl;
                 }
             }
             return ImgControls;
@@ -87,10 +92,36 @@ namespace Tetris
                 ImgControls[p.Row, p.Column].Source = tileImg[block.id];
             }
         }
+        private void DrawNBlock(Queue queue)
+        {
+            Block nextBloc = queue.NBlock;
+            NextImg.Source = blockImg[nextBloc.id];
+        }
+        public void DrawHBlock(Block Hold)
+        {
+            if (Hold == null) { HoldImg.Source = blockImg[0]; }
+            else { HoldImg.Source = blockImg[Hold.id]; }
+
+        }
         private void Draw(GState gameState)
         {
-            DrawGrid(gameState.GGrid);
+            DrawGrid(gameState.Grid);
             DrawBlock(gameState.CurrentBlock);
+            DrawNBlock(gameState.BloQueue);
+            DrawHBlock(gameState.Hold);
+            Score.Text = $"Score {gameState.Score}";
+        }
+        private async Task GLoop()
+        {
+            Draw(gameState);
+            while (!gameState.GO)
+            {
+                await Task.Delay(500);
+                gameState.MBDown();
+                Draw(gameState);
+            }
+            GOMenu.Visibility = Visibility.Visible;
+            FinalScore.Text = $"Score: {gameState.Score}";
         }
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -110,11 +141,15 @@ namespace Tetris
                     break;
 
                 case Key.X:
-                    gameState.RBCW();
+                    gameState.RBCCW();
                     break;
 
                 case Key.Y:
-                    gameState.RBCCW();
+                    gameState.RBCW();
+                    break;
+
+                case Key.C:
+                    gameState.HoldBloc();
                     break;
 
                 default:
@@ -122,14 +157,15 @@ namespace Tetris
             }
             Draw(gameState);
         }
-        private void GCanvas_Loaded(object sender, RoutedEventArgs e)
+        private async void GCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            Draw(gameState);
+            await GLoop();
         }
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             gameState = new GState();
             GOMenu.Visibility = Visibility.Hidden;
+            await GLoop();
         }
     }
 }
