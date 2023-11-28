@@ -136,32 +136,32 @@ namespace Tetris
             GOMenu.Visibility = Visibility.Visible;
             FinalScore.Text = $"Score: {gameState.Score}";
         }
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs e) //možná udělat okno na nový binds a možná udělat nějak i leaderboard a možná to ukládat to DB
         {
             if (gameState.GO) { return; }
             switch (e.Key)
             {
-                case Key.A:
+                case Key.Left:
                     gameState.MBLeft();
                     break;
 
-                case Key.D:
+                case Key.Right:
                     gameState.MBRight();
                     break;
 
-                case Key.S:
+                case Key.Down:
                     gameState.MBDown();
                     break;
 
-                case Key.E:
+                case Key.C:
                     gameState.RBCCW();
                     break;
 
-                case Key.Q:
+                case Key.X:
                     gameState.RBCW();
                     break;
 
-                case Key.F:
+                case Key.V:
                     gameState.HoldBloc();
                     break;
 
