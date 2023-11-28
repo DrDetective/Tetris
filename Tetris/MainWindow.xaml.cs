@@ -141,27 +141,27 @@ namespace Tetris
             if (gameState.GO) { return; }
             switch (e.Key)
             {
-                case Key.Left:
+                case Key.A:
                     gameState.MBLeft();
                     break;
 
-                case Key.Right:
+                case Key.D:
                     gameState.MBRight();
                     break;
 
-                case Key.Down:
+                case Key.S:
                     gameState.MBDown();
                     break;
 
-                case Key.X:
+                case Key.E:
                     gameState.RBCCW();
                     break;
 
-                case Key.Y:
+                case Key.Q:
                     gameState.RBCW();
                     break;
 
-                case Key.C:
+                case Key.F:
                     gameState.HoldBloc();
                     break;
 
